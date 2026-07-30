@@ -22,11 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol =
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
-  const metadataBase = new URL(`${protocol}://${host}`);
 
   return {
-    metadataBase,
-    title: "Brainstroming.ai — Think wider. Move faster.",
+    metadataBase: new URL(`${protocol}://${host}`),
+    title: "Brainstroming.ai - Think wider. Move faster.",
     description,
     openGraph: {
       type: "website",
@@ -37,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: "/og.png",
           width: 1200,
           height: 630,
-          alt: "Brainstroming.ai — Think wider. Move faster.",
+          alt: "Brainstroming.ai - Think wider. Move faster.",
         },
       ],
     },
@@ -52,14 +51,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
